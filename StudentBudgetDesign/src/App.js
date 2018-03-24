@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import MainBudgetTable from './MainBudgetTable';
-import MonthSelection from './MonthSelection'
+import MonthSelection from './MonthSelection';
+import StatChart from './StatChart';
 
 class App extends Component {
   render() {
@@ -17,7 +18,7 @@ class App extends Component {
         </p>
         <MonthSelection />
         <MainBudgetTable />
-        
+        <StatChart />
       </div> 
           );
   }
