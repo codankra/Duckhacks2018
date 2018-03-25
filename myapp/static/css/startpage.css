@@ -1,0 +1,81 @@
+html{
+	padding-top: 50px;
+	background: url(images/citynywp.jpg) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+
+}
+
+
+h1,
+h2,
+h3{
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+}
+body{
+	background: none;
+}
+
+.buttonGroup{
+    padding: 40px 80px;
+}
+.bigNav{
+	font-size: 2em;
+	padding: 20px 0;
+	border-radius: 0;
+	color: black;
+	opacity: 0.95; 
+}
+.bigNav::hover{
+	background-color: #5598d2;	
+}
+header{
+	width: 90%;
+	margin: 40px auto;
+	background-color: rgba(0,0,0,0.7);
+	padding: 40px;
+}
+#headerCTA{
+	text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+	text-align: center;
+	color: #f8f8f8;
+	margin-bottom: 50px;
+	font-size: 42px;
+}
+.backButton{
+	width: 40%;
+	margin: auto;
+	margin-top: 20px; 
+	background-color: lightgrey;
+	border-radius: 6px;
+}
+.mainButtons{
+	margin-top: 200px;
+}
+
+/* For phone screens */
+@media only screen and (max-width: 768px) {
+	header{
+		width: 100%;
+		padding: 20px;
+	}
+	
+	.buttonGroup{
+    padding: 40px 20px;
+	}
+
+
+}
+
+#navpicMain{
+    max-height: 100px;
+    padding-top: 10px;
+}
+/* Navbar Responsiveness */
+#mainNav{
+	background-color: rgba(0,0,0, 0.5);
+	margin-top: -50px;
+}
