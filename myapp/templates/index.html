@@ -10,15 +10,12 @@
 		<meta name="author" content="Codrops" />
 
 		<link rel="shortcut icon" href="../favicon.ico">
-<<<<<<< HEAD
 
-		<link rel="shortcut icon" href="{{url_for('static', filename='/favicon.ico')}}" type="image/x-icon">
-		<link rel="icon" href="{{url_for('static', filename='/favicon.ico')}}" type="image/x-icon">
+
 		
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/normalize.css') }}" />
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/demo.css') }}" />
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/component.css') }}" />
-=======
 		<link rel="stylesheet" type="text/css" href="../static/css/normalize.css" />
 		<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css" />
 		
@@ -27,6 +24,35 @@
 		<link rel="stylesheet" type="text/css" href="../static/css/MonthSelection.css" />
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
+		<style>
+			* {box-sizing: border-box}
+			
+
+			
+			/* Style tab links */
+			.tablink {
+				background-color: #555;
+				color: white;
+				float: left;
+				border: none;
+				outline: none;
+				cursor: pointer;
+				padding: 14px 16px;
+				font-size: 17px;
+				width: 9.09%;
+			}
+			
+			.tablink:hover {
+				background-color: #777;
+			}
+			
+			/* Style the tab content (and add height:100% for full page content) */
+
+			
+
+		</style>
+
+<!-- 
 		<script type="text/javascript">
 			google.charts.load('current', {packages: ['corechart', 'line']});
 			google.charts.setOnLoadCallback(drawLineColors);
@@ -66,8 +92,7 @@
 			      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
 			      chart.draw(data, options);
 			    }
-		</script>
->>>>>>> 436b29d87f96621c493c287825e6e39a7052733a
+		</script> -->
 
 		<!--[if IE]>
   		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -115,8 +140,141 @@
 				opacity: 1;
 			}
 			</style>
+
 	<body>
-=======
+
+		<div class="container">
+
+			<header>
+				<div>
+							<ul class="container details" >
+
+								<div><img alt="User Pic" style="max-width: 150px" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" id="profile-image1" class="img-circle img-responsive"> 
+								</div>
+									<label style="color: #363D45"> Maha Alidrisi </label>
+								</br></br>
+									<label  style="color: #363D45">Monthly Income:</label> 
+									<label type="text"> 5000 $</label>
+								</br>
+									<label style="color: #363D45"> Savings:</label> 
+									<label type="text"> 1000 $</label>
+							</ul>
+				</div>
+
+
+			</header>
+
+
+
+<div class="component" >
+
+<button class="tablink" onclick="openPage('January', this, '#777')" id="defaultOpen">Jan</button>
+<button class="tablink" onclick="openPage('February', this, '#777')" >Feb</button>
+<button class="tablink" onclick="openPage('March', this, '#777')">Mar</button>
+<button class="tablink" onclick="openPage('April', this, '#777')">Apr</button>
+<button class="tablink" onclick="openPage('May', this, '#777')">May</button>
+<button class="tablink" onclick="openPage('June', this, '#777')">Jun</button>
+<button class="tablink" onclick="openPage('July', this, '#777')">Jul</button>
+<button class="tablink" onclick="openPage('August', this, '#777')">Aug</button>
+<button class="tablink" onclick="openPage('September', this, '#777')">Sep</button>
+<button class="tablink" onclick="openPage('November', this, '#777')">Nov</button>
+<button class="tablink" onclick="openPage('December', this, '#777')">Dec</button>
+
+<div id="January" class="tabcontent">
+  <div class="component">
+		<table>
+			<thead>
+				<tr>
+					<th>Category</th>
+					<th>Expected</th>
+					<th>Actual</th>
+					<th>Comments</th>
+					<th>Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for d in data %}
+
+				<tr>
+					<td style="font-weight: bold ; color:#A32638">{{ d.category_name }}</td>
+
+					<td>{{ d.expected_value}}</td>
+					<td>{{ d.actual}}</td>
+					<td>{{ d.comment}}</td>
+					<td>{% if d.actual != d.expected_value%}
+						<div class="tooltip">
+								<p style= 'color:red'>Over Budget!</p>
+								<span class="tooltiptext">Your are spending more than the expected</span>
+						</div>
+					{%else%}
+						<p style= 'color:green'>On Budget!</p>
+					
+					{% endif %}
+					
+					</td>
+
+				</tr>
+				{% endfor %}
+
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div id="February" class="tabcontent">
+  <h3>News</h3>
+  <p>Some news this fine day!</p> 
+</div>
+
+<div id="Contact" class="tabcontent">
+  <h3>Contact</h3>
+  <p>Get in touch, or swing by for a cup of coffee.</p>
+</div>
+
+<div id="About" class="tabcontent">
+  <h3>About</h3>
+  <p>Who we are and what we do.</p>
+</div>
+</div>
+
+<div class="row">
+				<div class="col-md-12">
+					<div id="chart_div" style="width: 600px; height: 400px;"></div>
+				</div>
+  				
+  			</div>
+      
+
+		</div><!-- /container -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
+		<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+		
+
+
+	<script>
+function openPage(pageName,elmnt,color) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablink");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].style.backgroundColor = "";
+    }
+    document.getElementById(pageName).style.display = "block";
+    elmnt.style.backgroundColor = color;
+
+}
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+
+	</body>
+</html>
+
+<!-- =======
 	<body>		
 >>>>>>> 436b29d87f96621c493c287825e6e39a7052733a
 		<div class="container">
@@ -186,10 +344,10 @@
   			</div>
       
 
-		</div><!-- /container -->
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		</div><!/container -->
+<!-- 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
 		<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 		
 	</body>
-</html>
+</html> --> 
