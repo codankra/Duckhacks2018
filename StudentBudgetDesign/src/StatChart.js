@@ -8,7 +8,7 @@ class StatChart extends Component {
     super(props);
     this.state = {
       options: {
-        title: 'Monthly Metrics',
+        title: 'Monthly (Select Metric)',
         hAxis: { title: 'Month'},
         vAxis: { title: '$ Savings (or another metric name)'},
         legend: 'none',
@@ -39,8 +39,8 @@ class StatChart extends Component {
         data={this.state.data}
         options={this.state.options}
         graph_id="LineChart"
-        width="100%"
-        height="400px"
+        width="50%"
+        height="600px"
         legend_toggle
       />
     );
