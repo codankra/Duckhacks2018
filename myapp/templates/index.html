@@ -77,6 +77,11 @@
 				visibility: visible;
 				opacity: 1;
 			}
+			#chartdiv {
+				width : 100%;
+				height : 500px;
+				font-size : 11px;
+			}
 			</style>
 
 
@@ -166,8 +171,14 @@
 
 		<div id="January" class="tabcontent">
 		<h1><center>January</center></h1>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+				<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
+				<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+				<script type="text/javascript" src="http://www.amcharts.com/lib/3/amcharts.js"></script>
+				<script type="text/javascript" src="http://www.amcharts.com/lib/3/serial.js"></script>
+				<script type="text/javascript" src="http://www.amcharts.com/lib/3/themes/none.js"></script>
 			<div class="component">
-				<table>
+				<table id="data">
 					<thead>
 						<tr>
 							<th>Category</th>
@@ -199,8 +210,74 @@
 							{% endfor %}
 				</tbody>
 				</table>
+				<div id="chartdiv"></div>
 			</div>
 		</div>
+
+		<script type="text/javascript">
+			var chartConfig = {
+				"type": "serial",
+				"theme": "none",
+				"dataProvider": [],
+				"valueAxes": [{
+				"gridColor": "#FFFFFF",
+				"gridAlpha": 0.2,
+				"dashLength": 0
+			}],
+				"gridAboveGraphs": true,
+				"startDuration": 1,
+				"graphs": [],
+				"chartCursor": {
+				"categoryBalloonEnabled": false,
+				"cursorAlpha": 0,
+				"zoomable": false
+			},
+				"categoryField": "category",
+				"categoryAxis": {
+				"gridPosition": "start",
+				"gridAlpha": 0
+			},
+				"exportConfig": {
+				"menuTop": 0,
+				"menuItems": [{
+				"icon": '/lib/3/images/export.png',
+				"format": 'png'
+				}]
+			}
+		};
+
+		jQuery(document).ready(function () {
+			// get categories
+			jQuery('#data thead th').each(function (index) {
+				if (index) { // skip the first column
+					chartConfig.graphs.push({
+						"balloonText": "[[category]]: <b>[[value]]</b>",
+						"fillAlphas": 0.5,
+						"lineAlpha": 0.5,
+						"type": "line",
+						"valueField": "value" + index
+					});
+				}
+			});
+
+			// get data points
+			jQuery('#data tbody tr').each(function (index) {
+				var dataPoint = {};
+				jQuery(this).find('th,td').each(function (index2) {
+					if (jQuery(this).is('th')) { // category
+						dataPoint.category = this.innerHTML;
+					}
+					else {
+						dataPoint['value' + index2] = Number(this.innerHTML);
+					}
+				});
+				chartConfig.dataProvider.push(dataPoint);
+			});
+			
+			// make the chart
+			var chart = AmCharts.makeChart("chartdiv", chartConfig);
+		});
+	</script>
 
 		<div id="February" class="tabcontent">
 		  <h3>News</h3>
