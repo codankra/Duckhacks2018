@@ -10,6 +10,7 @@
 		<meta name="author" content="Codrops" />
 
 		<link rel="shortcut icon" href="../favicon.ico">
+<<<<<<< HEAD
 
 		<link rel="shortcut icon" href="{{url_for('static', filename='/favicon.ico')}}" type="image/x-icon">
 		<link rel="icon" href="{{url_for('static', filename='/favicon.ico')}}" type="image/x-icon">
@@ -17,11 +18,62 @@
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/normalize.css') }}" />
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/demo.css') }}" />
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/component.css') }}" />
+=======
+		<link rel="stylesheet" type="text/css" href="../static/css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css" />
+		
+		<link rel="stylesheet" type="text/css" href="../static/css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="../static/css/component.css" />
+		<link rel="stylesheet" type="text/css" href="../static/css/MonthSelection.css" />
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+		<script type="text/javascript">
+			google.charts.load('current', {packages: ['corechart', 'line']});
+			google.charts.setOnLoadCallback(drawLineColors);
+
+			function drawLineColors() {
+			      var data = new google.visualization.DataTable();
+			      data.addColumn('string', 'Month');
+			      data.addColumn('number', '$');
+
+			      data.addRows([
+			        ['Jan', 5000],
+			        ['Feb', 8000],
+			        ['Mar', 7000],
+			        ['Apr', 9000],
+			        ['May', 12000],
+			        ['Jun', 8000],
+			        ['Jul', 9000],
+			        ['Aug', 15000],
+			        ['Sep', 16000],
+			        ['Oct', 19000],
+			        ['Nov', 1000],
+			        ['Dec', 20000],  
+			      ]);
+
+			      var options = {
+			        hAxis: {
+			          title: 'Month'
+			        },
+			        vAxis: {
+			          title: '$ Savings'
+			        },
+			        colors: ['#9D1535'],
+			        curveType: 'function',
+			        title: 'Savings'
+			      };
+
+			      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+			      chart.draw(data, options);
+			    }
+		</script>
+>>>>>>> 436b29d87f96621c493c287825e6e39a7052733a
 
 		<!--[if IE]>
   		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
 	</head>
+<<<<<<< HEAD
 
 	<style>
 			.tooltip {
@@ -64,12 +116,31 @@
 			}
 			</style>
 	<body>
+=======
+	<body>		
+>>>>>>> 436b29d87f96621c493c287825e6e39a7052733a
 		<div class="container">
 
-			<header>
-				
+			<header id="head">
+				<h1>Duck Finance</h1>
+				<img src="../static/css/images/titleDuck.png">
 			</header>
-			<div class="component">
+				<div class="btn-group btn-group-justified other-container">
+			  		<a class="btn btn-primary" href="#jan">Jan</a>
+			  		<a class="btn btn-primary" href="#feb">Feb</a>
+				    <a class="btn btn-primary" href="#mar">Mar</a>
+				    <a class="btn btn-primary" href="#apr">Apr</a>
+				    <a class="btn btn-primary" href="#may">May</a>
+				    <a class="btn btn-primary" href="#jun">Jun</a>
+				    <a class="btn btn-primary" href="#jul">Jul</a>
+				    <a class="btn btn-primary" href="#aug">Aug</a>
+				    <a class="btn btn-primary" href="#sep">Sep</a>
+				    <a class="btn btn-primary" href="#oct">Oct</a>
+				    <a class="btn btn-primary" href="#nov">Nov</a>
+				    <a class="btn btn-primary" href="#dec">Dec</a>
+				</div>
+				<br>
+				<div class="component">
 				<table>
 					<thead>
 						<tr>
@@ -107,10 +178,18 @@
 				
 								
 			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div id="chart_div" style="width: 600px; height: 400px;"></div>
+				</div>
+  				
+  			</div>
+      
 
 		</div><!-- /container -->
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
+		<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 		
 	</body>
 </html>
