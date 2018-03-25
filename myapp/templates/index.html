@@ -10,6 +10,10 @@
 		<meta name="author" content="Codrops" />
 
 		<link rel="shortcut icon" href="../favicon.ico">
+
+		<link rel="shortcut icon" href="{{url_for('static', filename='/favicon.ico')}}" type="image/x-icon">
+		<link rel="icon" href="{{url_for('static', filename='/favicon.ico')}}" type="image/x-icon">
+		
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/normalize.css') }}" />
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/demo.css') }}" />
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/component.css') }}" />
@@ -18,6 +22,47 @@
   		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
 	</head>
+
+	<style>
+			.tooltip {
+				position: relative;
+				display: inline-block;
+				border-bottom: 1px dotted black;
+			}
+			
+			.tooltip .tooltiptext {
+				visibility: hidden;
+				width: 120px;
+				background-color: #555;
+				color: #fff;
+				text-align: center;
+				border-radius: 6px;
+				padding: 5px 0;
+				position: absolute;
+				z-index: 1;
+				bottom: 125%;
+				left: 50%;
+				margin-left: -60px;
+				opacity: 0;
+				transition: opacity 0.3s;
+			}
+			
+			.tooltip .tooltiptext::after {
+				content: "";
+				position: absolute;
+				top: 100%;
+				left: 50%;
+				margin-left: -5px;
+				border-width: 5px;
+				border-style: solid;
+				border-color: #555 transparent transparent transparent;
+			}
+			
+			.tooltip:hover .tooltiptext {
+				visibility: visible;
+				opacity: 1;
+			}
+			</style>
 	<body>
 		<div class="container">
 
@@ -32,22 +77,35 @@
 							<th>Expected</th>
 							<th>Actual</th>
 							<th>Comments</th>
+							<th>Status</th>
 						</tr>
 					</thead>
 					<tbody>
 						{% for d in data %}
-
 						<tr>
 							<td style="font-weight: bold ; color:#A32638">{{ d.category_name }}</td>
 
 							<td>{{ d.expected_value}}</td>
 							<td>{{ d.actual}}</td>
 							<td>{{ d.comment}}</td>
+							<td>{% if d.actual > d.expected_value%}
+									<div class="tooltip">
+											<p style= 'color:red'>Over Budget!</p>
+											<span class="tooltiptext">Your are spending more than the expected</span>
+									</div>
+								{%else%}
+									<p style= 'color:green'>On Budget!</p>
+								
+								{% endif %}
+								
+							</td>
 						</tr>
 						{% endfor %}
-
 					</tbody>
 				</table>
+
+				
+								
 			</div>
 
 		</div><!-- /container -->

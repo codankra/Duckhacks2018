@@ -7,7 +7,6 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-
     """db connection"""
     con = sql.connect("duckhacks2018.db")
     cur = con.cursor()
